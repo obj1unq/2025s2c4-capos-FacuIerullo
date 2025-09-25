@@ -1,1 +1,9 @@
-r
+import artefactos.*
+import capos.*
+test "rolando encuentra cosas pero no puede levantar todo" {
+  rolando.encontrar(espadaDelDestino)
+  rolando.encontrar(libroDeHechizos)
+  rolando.encontrar(collarDivino) 
+
+  assert.equals(rolando.inventario().size(), rolando.capacidad())
+}
