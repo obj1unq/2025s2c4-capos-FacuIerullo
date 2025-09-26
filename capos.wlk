@@ -1,11 +1,18 @@
 object rolando {
     var property inventario = []
     var property capacidad = 2
+    var property historiaDeArtefactosEncontrados = []
 
     method encontrar(artefacto) {
+      historiaDeArtefactosEncontrados.add(artefacto)  
       if(self.puedeLevantarArtefacto()){
         inventario.add(artefacto)
       }
+    }
+
+    method guardarArtefactosEnElCastilloDePiedra() {
+        castilloDePiedra.inventario().addAll(inventario)
+        inventario = []
     }
 
     method puedeLevantarArtefacto() = inventario.size() < capacidad
@@ -25,4 +32,8 @@ object rolando {
         }
     } */
 
+}
+
+object castilloDePiedra {
+  var property inventario = []
 }

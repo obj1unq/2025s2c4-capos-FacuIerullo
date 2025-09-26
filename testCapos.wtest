@@ -6,4 +6,29 @@ test "rolando encuentra cosas pero no puede levantar todo" {
   rolando.encontrar(collarDivino) 
 
   assert.equals(rolando.inventario().size(), rolando.capacidad())
+  assert.equals(rolando.inventario(), [espadaDelDestino, libroDeHechizos])
+}
+
+test "rolando guarda cosas en el castillo de piedra" {
+  rolando.encontrar(espadaDelDestino)
+  rolando.encontrar(libroDeHechizos)
+  rolando.guardarArtefactosEnElCastilloDePiedra()
+  rolando.encontrar(collarDivino) 
+  rolando.guardarArtefactosEnElCastilloDePiedra()
+
+  assert.equals(rolando.inventario().size(), 0)
+  assert.equals(castilloDePiedra.inventario(), [espadaDelDestino, libroDeHechizos,collarDivino])
+}
+
+test "historia de artefactos encontrados" {
+  rolando.encontrar(espadaDelDestino)
+  rolando.encontrar(libroDeHechizos)
+  rolando.encontrar(collarDivino)
+  rolando.guardarArtefactosEnElCastilloDePiedra()
+  rolando.encontrar(armaduraDeAceroValyrio)
+  rolando.encontrar(collarDivino)
+
+  assert.equals(rolando.historiaDeArtefactosEncontrados(), [espadaDelDestino, libroDeHechizos, collarDivino, armaduraDeAceroValyrio, collarDivino])
+  assert.equals(castilloDePiedra.inventario(), [espadaDelDestino, libroDeHechizos])
+  assert.equals(rolando.inventario(), [armaduraDeAceroValyrio, collarDivino])
 }
